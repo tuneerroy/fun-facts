@@ -1,3 +1,6 @@
+import random
+
+
 def judge_data(fact_or_fiction):
     if fact_or_fiction == "fact":
         return "approved", 10
@@ -6,6 +9,9 @@ def judge_data(fact_or_fiction):
 
 
 moderations = []  # imagine this is a list of moderators
+
+moderations.append(lambda is_fact: judge_data(is_fact))
+moderations.append(lambda is_fact: judge_data(is_fact))
 
 
 def quality_contorl(data):
