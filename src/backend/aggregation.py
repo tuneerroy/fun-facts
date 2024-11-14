@@ -1,3 +1,8 @@
+import json
+
+from utils import dump_data
+
+
 def significant_majority_vote(data, threshold=0.5):
     approved = 0
     total_score = 0
@@ -44,3 +49,14 @@ def aggregation(data):
         "facts": facts,
         "fiction": fiction,
     }
+
+
+def get_qc_data():
+    with open("sample_qc_output.json", "r") as f:
+        return json.load(f)
+
+
+def main():
+    data = get_qc_data()
+    res = aggregation(data)
+    dump_data(res, "sample_aggregated_output.json")
