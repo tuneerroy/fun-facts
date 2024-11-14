@@ -57,8 +57,8 @@
 
 ### 1. Data
 - We have a list of gpt generated facts in the file gpt_facts.txt in the data folder
-- more facts pulled from the internet in the document fun_facts.csv, which is also located in the data folder
-- facts pulled from wikipedia can also be found under the data folder
+- More facts pulled from the internet in the document fun_facts.csv, which is also located in the data folder
+- Facts pulled from wikipedia can also be found under the data folder in the document random_wikipedia_facts.csv
 
 ### 2. Quality Control and Aggregation
 - Our quality control process is in the document called quality_control.py document in src/backend
