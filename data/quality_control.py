@@ -66,6 +66,8 @@ def aggregation(data):
         for item in approved_data
         if not item["is_fact"]
     ]
+    facts.sort(key=lambda x: x["score"], reverse=True)
+    fiction.sort(key=lambda x: x["score"], reverse=True)
     return {
         "facts": facts,
         "fiction": fiction,
