@@ -64,3 +64,8 @@
 ### 2. Quality Control and Aggregation
 - Our quality control process is in the document called quality_control.py document in src/backend
 - Our aggregation code is in the file aggregation.py, also located in src/backend
+
+### 3. Sample Input and Output
+- The sample inputs to the quality control code are sample_facts.txt and sample_fiction.txt in the src/backend folder
+- The sample output of the quality control code is called sample_qc_output.json located in the same folder as the sample input facts
+- The sample output, sample_qc_output.json, is also the sample input for the aggregation code in the same folder
