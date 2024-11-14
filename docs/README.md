@@ -60,6 +60,6 @@
 - more facts pulled from the internet in the document fun_facts.csv, which is also located in the data folder
 - facts pulled from wikipedia can also be found under the data folder
 
-### Quality Control and Aggregation
-- Our quality control process is in the document called quality_control.py document under the src folder
-- The aggregation code is also under the src file
+### 2. Quality Control and Aggregation
+- Our quality control process is in the document called quality_control.py document in src/backend
+- Our aggregation code is in the file aggregation.py, also located in src/backend
