@@ -60,3 +60,7 @@ def main():
     data = get_qc_data()
     res = aggregation(data)
     dump_data(res, "sample_aggregated_output.json")
+
+
+if __name__ == "__main__":
+    main()
