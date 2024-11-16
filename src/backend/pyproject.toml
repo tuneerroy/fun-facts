@@ -7,8 +7,27 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.13"
+fastapi = {extras = ["standard"], version = "^0.115.5"}
+bson = "^0.5.10"
+motor = {extras = ["srv"], version = "^3.6.0"}
+beanie = "^1.27.0"
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+python-dotenv = "^1.0.1"
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
 
+
+[tool.poetry.group.dev.dependencies]
+black = {extras = ["jupyter"], version = "^24.10.0"}
+isort = "^5.13.2"
+flake8 = "^7.1.1"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"
+line_length = 88
