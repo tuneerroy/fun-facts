@@ -23,11 +23,9 @@ export const GamePage: React.FC = () => {
             if (axios.isAxiosError<{ detail: string }>(error)) {
                 if (error.response?.data?.detail) {
                     setError(error.response.data.detail)
-                    console.error(error.response.data.detail)
                 }
             }
         }
-        // TODO: update rating etc
         fetchItem()
     }
 
@@ -36,23 +34,38 @@ export const GamePage: React.FC = () => {
     }, [])
 
     return (
-        <div>
-            <h2>Guess if the following is Fact or Fiction</h2>
-            {error && <p>{error}</p>}
-            <p>{item?.content}</p>
-            <select value={guess ?? ''} onChange={(e) => setGuess(e.target.value as 'fact' | 'fiction')}>
-                <option value="">Select</option>
-                <option value="fact">Fact</option>
-                <option value="fiction">Fiction</option>
-            </select>
+        <div className="p-6">
+            <h2 className="text-xl font-bold mb-4">Guess if the following is Fact or Fiction</h2>
+            {error && <p className="text-red-500">{error}</p>}
+            <p className="border p-4 mb-4 rounded bg-gray-50">{item?.content}</p>
+            <div className="mb-4">
+                <select
+                    className="border border-gray-300 p-2 rounded w-full"
+                    value={guess ?? ''}
+                    onChange={(e) => setGuess(e.target.value as 'fact' | 'fiction')}
+                >
+                    <option value="">Select</option>
+                    <option value="fact">Fact</option>
+                    <option value="fiction">Fiction</option>
+                </select>
+            </div>
             {guess === 'fiction' && (
-                <div>
-                    <label>AI-generated?</label>
-                    <input type="checkbox" checked={!!aiGuess} onChange={(e) => setAiGuess(e.target.checked)} />
+                <div className="mb-4 flex items-center gap-2">
+                    <label className="text-gray-700">AI-generated?</label>
+                    <input
+                        type="checkbox"
+                        checked={!!aiGuess}
+                        onChange={(e) => setAiGuess(e.target.checked)}
+                        className="h-5 w-5"
+                    />
                 </div>
             )}
-            <button onClick={handleSubmit}>Submit</button>
-            {/* <h3>Your rating: {rating}</h3> */}
+            <button
+                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                onClick={handleSubmit}
+            >
+                Submit
+            </button>
         </div>
     )
 }
