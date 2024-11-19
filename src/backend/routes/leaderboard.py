@@ -6,7 +6,7 @@ from routes.auth import get_current_user
 router = APIRouter()
 
 
-@router.get("/")
+@router.get("")
 async def get_leaderboard(_: User = Depends(get_current_user)):
     # TODO: show user rankings
     # get top 10

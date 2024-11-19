@@ -30,7 +30,7 @@ class ItemEntry(BaseModel):
     sources: list[str]
 
 
-@router.post("/")
+@router.post("")
 async def post_item(
     item: ItemEntry,
     _: User = Depends(get_current_user),  # just make sure the user is logged in

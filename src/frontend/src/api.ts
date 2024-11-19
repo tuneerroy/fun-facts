@@ -1,11 +1,11 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: 'http://localhost:8000',
+  baseURL: 'http://localhost:8000/api',
   withCredentials: true,
 })
 
-export const getUser = () => api.get('/accounts/')
+export const getUser = () => api.get('/accounts')
 export const logoutUser = () => api.post('/accounts/logout')
 
 export const login = (username: string, password: string) =>

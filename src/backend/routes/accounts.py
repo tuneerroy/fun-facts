@@ -20,7 +20,7 @@ class UserEntry(BaseModel):
     password: str
 
 
-@router.get("/")
+@router.get("")
 async def get_user(user: User = Depends(get_current_user)):
     return {"is_admin": user.is_admin}
 
