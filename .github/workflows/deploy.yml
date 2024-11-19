@@ -1,0 +1,33 @@
+name: Deploy to Heroku
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      CI: false
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies and build frontend
+        run: |
+          cd src/frontend
+          npm install
+          npm run build --prod
+
+      - name: Copy frontend build to backend
+        run: |
+          rm -rf src/backend/public
+          cp -r src/frontend/build src/backend/public
+
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "fun-facts"
+          heroku_email: "tuneer@seas.upenn.edu"
