@@ -80,4 +80,5 @@ def hash_password(password):
 
 def verify_password(plain_password, hashed_password):
     password_utf8 = plain_password.encode("utf-8")
-    return bcrypt.checkpw(password_utf8, hashed_password)
+    hashed_password_utf8 = hashed_password.encode("utf-8")
+    return bcrypt.checkpw(password_utf8, hashed_password_utf8)

@@ -13,8 +13,6 @@ beanie = "^1.27.0"
 python-dotenv = "^1.0.1"
 python-jose = {extras = ["cryptography"], version = "^3.3.0"}
 bcrypt = "^4.2.1"
-pymongo = "^4.9.0"
-motor = "^3.6.0"
 
 
 [tool.poetry.group.dev.dependencies]
