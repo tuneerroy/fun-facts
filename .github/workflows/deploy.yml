@@ -32,3 +32,5 @@ jobs:
           heroku_app_name: "fun-facts"
           heroku_email: "liun0@seas.upenn.edu"
           appdir: "src/backend"
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
