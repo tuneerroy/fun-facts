@@ -22,7 +22,7 @@ jobs:
 
       - name: Copy frontend build to backend
         run: |
-          rm -rf src/backend/build
+          rm -rf src/backend/frontend
           cp -r src/frontend/build src/backend/frontend
 
       - name: Display contents of src/backend
