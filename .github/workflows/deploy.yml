@@ -18,7 +18,7 @@ jobs:
         run: |
           cd src/frontend
           npm install
-          npm run build --prod
+          npm run build --omit=dev
 
       - name: Copy frontend build to backend
         run: |
@@ -36,6 +36,5 @@ jobs:
           heroku_app_name: "fun-facts"
           heroku_email: "liun0@seas.upenn.edu"
           appdir: "src/backend"
-          procfile: "web: uvicorn main:app"
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
