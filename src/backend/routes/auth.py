@@ -1,10 +1,9 @@
 from fastapi import HTTPException, Request, Response, status
 from jose import JWTError, jwt
-from passlib.context import CryptContext
 
 from models import User
+import bcrypt
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 SECRET_KEY = "crowdsourcing"
 ALGORITHM = "HS256"
@@ -74,8 +73,11 @@ def build_response(username: str):
 
 
 def hash_password(password):
-    return pwd_context.hash(password)
+    pwd_utf8 = password.encode("utf-8")
+    salt = bcrypt.gensalt()
+    return bcrypt.hashpw(pwd_utf8, salt)
 
 
 def verify_password(plain_password, hashed_password):
-    return pwd_context.verify(plain_password, hashed_password)
+    password_utf8 = plain_password.encode("utf-8")
+    return bcrypt.checkpw(password_utf8, hashed_password)
