@@ -31,3 +31,4 @@ jobs:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: "fun-facts"
           heroku_email: "liun0@seas.upenn.edu"
+          appdir: "src/backend"
