@@ -25,6 +25,10 @@ jobs:
           rm -rf src/backend/build
           cp -r src/frontend/build src/backend/build
 
+      - name: Display contents of src/backend
+        run: |
+          ls src/backend
+
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.13.15
         with:
