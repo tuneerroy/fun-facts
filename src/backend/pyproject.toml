@@ -6,7 +6,7 @@ authors = ["Your Name <you@example.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.13"
+python = "^3.12"
 fastapi = {extras = ["standard"], version = "^0.115.5"}
 bson = "^0.5.10"
 motor = {extras = ["srv"], version = "^3.6.0"}
