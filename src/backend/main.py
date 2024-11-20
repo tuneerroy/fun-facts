@@ -33,6 +33,7 @@ app.add_middleware(
         "http://127.0.0.1:3000",
         "http://localhost:8000",
         "http://127.0.0.1:8000",
+        "https://fun-facts-2c47073e0b4e.herokuapp.com",
     ],
     allow_credentials=True,
     allow_methods=["*"],
