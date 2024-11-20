@@ -61,6 +61,10 @@ api_router.include_router(
 
 app.include_router(api_router, prefix="/api", tags=["api"])
 
+# check if folder exists
+if not os.path.exists("build"):
+    print("WTFFFFF")
+    exit(1)
 
 app.mount("/static", StaticFiles(directory="build/static"), name="static")
 templates = Jinja2Templates(directory="build")
