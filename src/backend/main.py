@@ -2,7 +2,7 @@ import os
 
 from beanie import init_beanie
 from dotenv import load_dotenv
-from fastapi import APIRouter, Depends, FastAPI, Request
+from fastapi import APIRouter, FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
