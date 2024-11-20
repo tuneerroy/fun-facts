@@ -22,7 +22,7 @@ jobs:
 
       - name: Copy frontend build to backend
         run: |
-          rm -rf src/backend/public
+          rm -rf src/backend/build
           cp -r src/frontend/build src/backend/build
 
       - name: Deploy to Heroku
