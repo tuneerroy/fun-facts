@@ -48,6 +48,7 @@ export const AdminJudgingPage: React.FC = () => {
         <div className="p-6">
             <h2 className="text-xl font-bold mb-4">Admin Judging</h2>
             {error && <p className="text-red-500">{error}</p>}
+            {items.length === 0 && <p>No items to judge!</p>}
             <ul className="space-y-4">
                 {items.map((item: Item) => (
                     <li

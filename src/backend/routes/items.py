@@ -18,8 +18,7 @@ class FactFictonResponse(BaseModel):
 async def get_random_item() -> FactFictonResponse:
     items = await Item.find({"is_approved": True}, with_children=True).to_list()
     if not items:
-        print("WTF")
-        raise HTTPException(status_code=404, detail="No items found")
+        raise HTTPException(status_code=404, detail="No facts/fiction in database!")
     item = random.choice(items)
     return FactFictonResponse(id=str(item.id), content=item.content)
 
