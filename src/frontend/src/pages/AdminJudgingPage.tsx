@@ -9,8 +9,9 @@ interface Item {
 }
 
 export const AdminJudgingPage: React.FC = () => {
-    const [items, setItems] = useState([])
+    const [items, setItems] = useState<Item[]>([])
     const [error, setError] = useState('')
+    const [ratings, setRatings] = useState<{ [key: string]: number }>({})
 
     const fetchItems = async () => {
         setError('')
@@ -28,8 +29,15 @@ export const AdminJudgingPage: React.FC = () => {
 
     const judge = async (id: string, approve: boolean) => {
         setError('')
+        const rating = ratings[id]
+
+        if (approve && (rating === undefined || rating < 0 || rating > 100)) {
+            setError('Please provide a rating from 0-100 for approval.')
+            return
+        }
+
         try {
-            await judgeItem(id, approve)
+            await judgeItem(id, approve, approve ? rating : undefined)
             fetchItems()
         } catch (error) {
             if (axios.isAxiosError<{ detail: string }>(error)) {
@@ -44,19 +52,37 @@ export const AdminJudgingPage: React.FC = () => {
         fetchItems()
     }, [])
 
+    const handleRatingChange = (id: string, value: number) => {
+        setRatings((prev) => ({ ...prev, [id]: value }))
+    }
+
     return (
         <div className="p-6">
             <h2 className="text-xl font-bold mb-4">Admin Judging</h2>
             {error && <p className="text-red-500">{error}</p>}
             {items.length === 0 && <p>No items to judge!</p>}
             <ul className="space-y-4">
-                {items.map((item: Item) => (
+                {items.map((item) => (
                     <li
                         key={item.id}
                         className="border border-gray-300 rounded p-4 shadow-md"
                     >
                         <p className="mb-2 font-medium">{item.content}</p>
                         <p className="mb-4">{item.is_fact ? 'Fact' : 'Fiction'}</p>
+                        <div className="mb-4">
+                            <label htmlFor={`rating-${item.id}`} className="block font-medium mb-2">
+                                Rating (0-100):
+                            </label>
+                            <input
+                                id={`rating-${item.id}`}
+                                type="number"
+                                min="0"
+                                max="100"
+                                value={ratings[item.id] === undefined ? '' : ratings[item.id]}
+                                onChange={(e) => handleRatingChange(item.id, Number(e.target.value))}
+                                className="border border-gray-300 rounded px-2 py-1 w-20"
+                            />
+                        </div>
                         <div className="flex gap-4">
                             <button
                                 onClick={() => judge(item.id, true)}

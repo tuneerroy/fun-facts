@@ -5,7 +5,7 @@ from pydantic import model_validator
 
 class Item(Document):
     content: str
-    rating: int = 0
+    rating: float = 0
     is_fact: bool
     is_approved: bool = False
     moderator_responses: list[bool] = []

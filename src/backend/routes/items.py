@@ -19,7 +19,10 @@ async def get_random_item() -> FactFictonResponse:
     items = await Item.find({"is_approved": True}, with_children=True).to_list()
     if not items:
         raise HTTPException(status_code=404, detail="No facts/fiction in database!")
-    item = random.choice(items)
+
+    # should be weighted on rating as well
+    item = random.choices(items, weights=[item.rating for item in items])[0]
+
     return FactFictonResponse(id=str(item.id), content=item.content)
 
 

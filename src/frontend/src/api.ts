@@ -15,7 +15,7 @@ export const signup = (username: string, password: string) =>
 
 export const submitFactFiction = (type: string, content: string, sources: string[]) => api.post('/items', { type, content, sources })
 export const getUnapprovedItems = () => api.get('/protected/items')
-export const judgeItem = (id: string, approve: boolean) => api.post(`/protected/items/${id}`, { approve })
+export const judgeItem = (id: string, approve: boolean, rating: number | undefined) => api.post(`/protected/items/${id}`, { approve, rating })
 
 export const getLeaderboard = () => api.get('/leaderboard')
 
