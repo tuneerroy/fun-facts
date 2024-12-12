@@ -7,7 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1nvCNI0vqTABLGrjkCtFqw8TcB9awqxwb
 """
 
-!pip install wikipedia
+# !pip install wikipedia
 
 import wikipedia
 import pandas as pd
@@ -21,7 +21,9 @@ for _ in range(200):
     try:
         # Get a random Wikipedia page title
         random_page = wikipedia.random()
-        content = wikipedia.page(random_page, auto_suggest=False).content # Disable auto_suggest
+        content = wikipedia.page(
+            random_page, auto_suggest=False
+        ).content  # Disable auto_suggest
 
         # If DisambiguationError, pick the first suggestion
         # random_page = e.options[0]
@@ -35,16 +37,13 @@ for _ in range(200):
         # If the page doesn't exist, skip to the next iteration
         continue
 # Create a DataFrame to store the data
-df = pd.DataFrame({
-    'Title': titles,
-    'Content': contents
-})
+df = pd.DataFrame({"Title": titles, "Content": contents})
 df["Content"] = df["Content"].str.replace("\n", "", regex=False)
 df["Content"] = df["Content"].str.replace("==", "", regex=False)
 
-df.to_csv('/content/random_wikipedia_facts.csv', index=False)
+df.to_csv("/content/random_wikipedia_facts.csv", index=False)
 df.head()
 
-df["Content"].iloc[0] #first fact
+df["Content"].iloc[0]  # first fact
 
-len(df) #number of fun facts we have
+len(df)  # number of fun facts we have
