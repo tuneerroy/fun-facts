@@ -1,9 +1,8 @@
+import bcrypt
 from fastapi import HTTPException, Request, Response, status
 from jose import JWTError, jwt
 
 from models import User
-import bcrypt
-
 
 SECRET_KEY = "crowdsourcing"
 ALGORITHM = "HS256"

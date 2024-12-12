@@ -1,11 +1,11 @@
-import math
-from main import db_lifespan
-from models import Fact, Fiction
 import asyncio
+import math
 
 import pandas as pd
-
 from tqdm import tqdm
+
+from main import db_lifespan
+from models import Fact, Fiction
 
 
 async def load_data_into_db(filepath):
@@ -21,7 +21,6 @@ async def load_data_into_db(filepath):
             "Answer.is_myth.myth": lambda x: x.strip("[]").replace("'", "").split(", "),
         },
     )
-    # convert all lists of [''] to []
     data["Answer.factSource"] = data["Answer.factSource"].apply(
         lambda x: [] if x == [""] else x
     )
@@ -31,10 +30,6 @@ async def load_data_into_db(filepath):
     data["Answer.is_myth.myth"] = data["Answer.is_myth.myth"].apply(
         lambda x: [] if x == [""] else x
     )
-    # cast Answer.factSource as a list of strs
-    # data["Answer.factSource"] = data["Answer.factSource"].astype(list)
-    # cast Answer.is_fact.fact as a list of bools
-    # case Answer.is_myth.myth as a list of bools
 
     # iterate through each row
     for _, row in tqdm(list(data.iterrows())):
@@ -85,8 +80,5 @@ if __name__ == "__main__":
         filepath = sys.argv[1]
     else:
         filepath = input("Enter the path to the data file: ")
-
-    # load_data_into_db(filepath)
-    # run it with asyncio.run
 
     asyncio.run(load_data_into_db(filepath))
