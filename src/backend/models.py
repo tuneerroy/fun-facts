@@ -1,5 +1,5 @@
 from typing import Self
-from beanie import Document, Link, PydanticObjectId
+from beanie import Document, PydanticObjectId
 from pydantic import model_validator
 
 
